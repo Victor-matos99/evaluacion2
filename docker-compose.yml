@@ -1,0 +1,20 @@
+version: "3.9"
+services:
+  web:
+    build: .
+    ports:
+      - "8000:5000"
+    volumes:
+      - D:\moviles2\evaluacion2\docker_init:/code
+  db:
+    image: mariadb
+    restart: always
+    ports:
+      - "3306:3306"
+    environment:
+      MARIADB_ROOT_PASSWORD: "example"
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8081:8080

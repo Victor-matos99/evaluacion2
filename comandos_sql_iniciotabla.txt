@@ -1,0 +1,69 @@
+SET NAMES utf8;
+SET time_zone = '+00:00';
+SET foreign_key_checks = 0;
+SET sql_mode = 'NO_AUTO_VALUE_ON_ZERO';
+
+SET NAMES utf8mb4;
+
+DROP TABLE IF EXISTS `clientes`;
+CREATE TABLE `clientes` (
+  'cliente_id' INT UNIQUE,
+ 'nombre' VARCHAR (255),
+ 'apellido' VARCHAR (255),
+ 'telefono' VARCHAR (25),
+ 'email' VARCHAR (255),
+ 'direccion' VARCHAR (255),
+ 'ciudad' VARCHAR (50),
+ 'estado' VARCHAR (25),
+ 'codigo_postal' VARCHAR (5)L
+) ENGINE=MyISAM DEFAULT CHARSET=ascii;
+
+
+DROP TABLE IF EXISTS `factura`;
+CREATE TABLE `factura` (
+
+'factura_id INT, NOT_NULL,
+'producto_id' INT, NOT_NULL,
+'cantidad' INT,
+'subtotal' Float,
+'IVA' Float,
+'total' Float,
+'cliente_id' INT NOT_NULL,
+'registro_id' INT UNIQUE
+   
+) ENGINE=MyISAM DEFAULT CHARSET=ascii;
+
+
+DROP TABLE IF EXISTS `productos`;
+CREATE TABLE `productos` (
+ 'producto_id' INT UNIQUE,
+'descripcion' VARCHAR (255),
+'cantidad_disponible' INT,
+'costo_unitario' Float,
+'precio_venta' Float
+) ENGINE=MyISAM DEFAULT CHARSET=ascii;
+
+
+insert into clientes (id, nombre, apellido, telefono, email, direccion, ciudad, estado, codigo_postal) values (1, 'Karena', 'Fishpool', 'kfishpool0@webs.com', 'Female', '199.5.3.136', '69.234.14.19', '110.46.171.108', '22.244.189.128');
+insert into clientes (id, nombre, apellido, telefono, email, direccion, ciudad, estado, codigo_postal) values (2, 'Chastity', 'McCloid', 'cmccloid1@tamu.edu', 'Female', '217.104.249.27', '1.145.57.241', '8.173.127.99', '125.63.221.246');
+insert into clientes (id, nombre, apellido, telefono, email, direccion, ciudad, estado, codigo_postal) values (3, 'Patty', 'Shea', 'pshea2@ameblo.jp', 'Female', '25.33.79.74', '148.177.89.138', '143.155.135.114', '17.127.143.215');
+insert into clientes (id, nombre, apellido, telefono, email, direccion, ciudad, estado, codigo_postal) values (4, 'Kylie', 'Jurkiewicz', 'kjurkiewicz3@huffingtonpost.com', 'Female', '156.160.168.96', '150.218.152.153', '123.90.138.14', '212.146.211.182');
+insert into clientes (id, nombre, apellido, telefono, email, direccion, ciudad, estado, codigo_postal) values (5, 'Willard', 'Forcer', 'wforcer4@princeton.edu', 'Male', '57.163.193.47', '187.102.27.58', '59.128.71.155', '213.99.79.57');
+
+insert into factura (factura_id, producto_id, cantidad, subtotal, IVA, total, cliente_id, registro_id) values (1, '75-079-4573', '61-964-7409', '14-793-4190', '47-741-9790', '89-193-0355', '89-570-6539', '26-760-8014');
+insert into factura (factura_id, producto_id, cantidad, subtotal, IVA, total, cliente_id, registro_id) values (2, '35-840-6530', '96-806-9870', '26-868-4706', '90-890-6017', '48-838-5462', '03-491-2525', '86-317-0059');
+insert into factura (factura_id, producto_id, cantidad, subtotal, IVA, total, cliente_id, registro_id) values (3, '18-338-2892', '83-286-4639', '60-272-8392', '93-090-3756', '68-202-9975', '89-999-2258', '49-242-1520');
+insert into factura (factura_id, producto_id, cantidad, subtotal, IVA, total, cliente_id, registro_id) values (4, '24-257-3282', '34-053-1378', '41-474-8031', '19-917-9582', '67-665-8988', '92-085-6885', '92-726-1620');
+insert into factura (factura_id, producto_id, cantidad, subtotal, IVA, total, cliente_id, registro_id) values (5, '47-936-2764', '73-094-4004', '17-525-2097', '90-436-4251', '72-898-6592', '07-061-8810', '61-938-3755');
+
+insert into factura (producto_id, descripcion, cantidad_disponible, costo_unitario, precio_venta) values (1, false, '58-573-7426', '66-492-4829', '52-224-8939');
+insert into factura (producto_id, descripcion, cantidad_disponible, costo_unitario, precio_venta) values (2, false, '04-581-1056', '38-782-4715', '32-962-7849');
+insert into factura (producto_id, descripcion, cantidad_disponible, costo_unitario, precio_venta) values (3, false, '22-567-8007', '49-023-8742', '84-793-7125');
+insert into factura (producto_id, descripcion, cantidad_disponible, costo_unitario, precio_venta) values (4, true, '40-997-3681', '51-104-9855', '71-294-9443');
+insert into factura (producto_id, descripcion, cantidad_disponible, costo_unitario, precio_venta) values (5, true, '80-499-3760', '46-347-1657', '25-726-9075');
+
+-------------------------------------------------------------
+
+para insertar datos usando POST
+
+//curl -XPOST -H 'Content-Type: application/json' http://localhost:8000/mysql -d ' { "campo1": "prueba", "campo2":"prueba", "campo3": "18" }'
